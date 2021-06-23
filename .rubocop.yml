@@ -1,0 +1,12 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.6
+  NewCops: enable
+  Exclude:
+    - db/schema.rb
+
+Style/Documentation:
+  Enabled: false
