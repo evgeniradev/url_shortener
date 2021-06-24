@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_23_145539) do
+ActiveRecord::Schema.define(version: 2021_06_24_213351) do
+
+  create_table "urls", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "url", null: false
+    t.string "slug", null: false
+    t.integer "visits", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_urls_on_slug", unique: true
+    t.index ["url", "user_id"], name: "index_urls_on_url_and_user_id", unique: true
+    t.index ["user_id"], name: "index_urls_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

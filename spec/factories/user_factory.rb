@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :user do
-    email { 'user@shortener.url' }
+    email { FFaker::Internet.email }
     password { 'password' }
   end
 end
