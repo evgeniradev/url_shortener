@@ -1,0 +1,12 @@
+.shortener_form {
+  margin: 5rem 0;
+
+  .col-submit {
+    margin-top: 1rem;
+
+    @media (min-width: 576px) {
+      margin-top: 0;
+      padding-left: 0;
+    }
+  }
+}

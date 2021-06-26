@@ -1,0 +1,22 @@
+#urls-datatable_wrapper {
+  td {
+   max-width: 100px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+  }
+
+  .pagination {
+    justify-content: flex-end;
+
+    .paginate_button.disabled a {
+      color: #6c757d;
+      cursor: default;
+      text-decoration: none;
+    }
+
+    .paginate_button:last-child {
+      margin-left: .5rem;
+    }
+  }
+}

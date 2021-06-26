@@ -1,1 +1,24 @@
-test
+.row
+  .col
+    = form_for Url.new, remote: true, html: { class: 'shortener_form' } do |f|
+      .row
+        .col-sm-10
+          = f.url_field :url, placeholder: 'Enter URL', class: 'form-control'
+        .col-sm-2.col-submit
+          = f.submit 'Generate', class: 'btn btn-primary', style: 'width: 100%;'
+.row
+  .col
+    %table.table.table-striped.hover#urls-datatable{'data-source' => urls_path(format: :json)}
+      %thead
+        %tr
+          %th
+            ID
+          %th.all
+            URL
+          %th
+            Short URL
+          %th
+            Visits
+
+
+

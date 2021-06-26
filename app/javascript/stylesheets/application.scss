@@ -1,6 +1,10 @@
-@import './bootstrap_custom.scss';
-@import './components/shortener.scss';
+@import 'bootstrap/dist/css/bootstrap.css';
+@import 'datatables.net-bs/css/dataTables.bootstrap.css';
+@import 'datatables.net-responsive-bs/css/responsive.bootstrap.css';
+
+@import './components/shortener_form.scss';
 @import './components/urls_table.scss';
+@import './components/datatables_glyphicons_fix.scss';
 
 body {
   font-size: 16px;
@@ -8,5 +12,5 @@ body {
 
 .main-container {
   margin: 0 auto;
-  max-width: 992px;;
+  max-width: 992px;
 }
