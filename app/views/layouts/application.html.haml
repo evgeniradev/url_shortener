@@ -1,5 +1,10 @@
 !!!
 %html
-  = render('layouts/head')
-  %body
-    = yield
+  = render 'layouts/head'
+  %body.bg-light.bg-gradient
+    = render 'layouts/header'
+    .container.main-container
+      .row
+        .col
+          = yield
+    = render 'layouts/footer'

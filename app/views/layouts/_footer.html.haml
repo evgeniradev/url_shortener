@@ -1,0 +1,6 @@
+%footer
+  .container.main-container
+    .row
+      .col
+        - if user_signed_in?
+          = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-secondary mt-5 mb-5'
