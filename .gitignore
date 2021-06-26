@@ -43,3 +43,6 @@ yarn-debug.log*
 .keep
 .DS_Store
 .DS_Store?
+
+# Configuration file
+.env
