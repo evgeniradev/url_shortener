@@ -7,6 +7,7 @@ require 'capybara-screenshot/rspec'
 
 DRIVER_NAME = :apparition_chrome
 
+# rubocop:disable Style/MutableConstant
 APPARITION_OPTIONS = {
   headless: true,
   url_whitelist: ['localhost'],
@@ -23,7 +24,8 @@ APPARITION_OPTIONS = {
     'window-size' => '1920,3080',
     'enable-features' => 'NetworkService,NetworkServiceInProcess'
   }
-}.freeze
+}
+# rubocop:enable Style/MutableConstant
 
 Capybara.register_driver DRIVER_NAME do |app|
   Capybara::Apparition::Driver.new(app, APPARITION_OPTIONS)
@@ -33,6 +35,8 @@ Capybara::Screenshot.register_driver(DRIVER_NAME) do |driver, path|
   driver.save_screenshot(path, full: true)
 end
 
+Capybara.server_host = 'localhost'
+Capybara.server_port = 3333
 Capybara.default_driver = DRIVER_NAME
 Capybara.javascript_driver = DRIVER_NAME
 

@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   root to: 'urls#index'
 
-  resources :urls, only: %i[index create show destroy]
+  resources :urls, only: %i[index create]
+
+  get '/:slug', to: 'urls#show', as: :url
 end
