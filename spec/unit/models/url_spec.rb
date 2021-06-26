@@ -9,11 +9,18 @@ describe Url do
   let!(:url) { create(:url) }
 
   context 'when public methods' do
-    it '#concurrent_increment!' do
+    it '#concurrent_increment! - when url is persisted' do
       threads = []
       10.times { threads << url.concurrent_increment! }
       threads.each(&:join)
       expect(url.reload.visits).to eq(10)
+    end
+
+    it '#concurrent_increment! - when url is not persisted' do
+      message = 'Record must be persisted'
+      expect { build(:url).concurrent_increment! }.to(
+        raise_error(RuntimeError, message)
+      )
     end
 
     it '#short_url - generates a short url' do

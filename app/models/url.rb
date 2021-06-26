@@ -19,10 +19,14 @@ class Url < ApplicationRecord
   end
 
   def concurrent_increment!
+    raise 'Record must be persisted' unless persisted?
+
     Thread.new do
       ActiveRecord::Base
         .connection
         .execute("UPDATE urls SET visits = visits + 1 WHERE id = #{id};")
+
+      reload
     end
   end
 end
