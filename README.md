@@ -2,12 +2,23 @@
 
 A Rails-based URL shortener application.
 
-## Dependencies
+#### Ruby Version
+2.7.3
+
+#### Rails Version
+6.1.3
+
+## Required Non-Ruby Dependencies
 * Node.js
 * Yarn - Package Manager
 * Google Chrome(required to run the feature specs)
 
 ## Manual Installation
+
+Install bundler:
+```
+$ gem install bundler
+```
 
 Install the Ruby gem dependencies:
 ```
@@ -44,14 +55,14 @@ $ ./specs.sh
 ```
 
 ## [Docker](https://docs.docker.com/) Installation
-Please note, you will need Docker Compose.
+Please note, you will need to have Docker Compose installed.
 
 Build the container:
 ```
 $ docker-compose build
 ```
 
-Start the containerL
+Start the container:
 ```
 $ docker-compose up
 ```
