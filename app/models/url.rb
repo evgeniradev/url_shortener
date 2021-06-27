@@ -27,6 +27,12 @@ class Url < ApplicationRecord
         .execute("UPDATE urls SET visits = visits + 1 WHERE id = #{id};")
 
       reload
+
+      yield if block_given?
     end
+  end
+
+  def serializer
+    UrlSerializer.new(self)
   end
 end

@@ -17,7 +17,10 @@ class UrlsController < ApplicationController
 
     return render('not_found', status: :bad_request) unless url
 
-    url.concurrent_increment!
+    url.concurrent_increment! do
+      UrlChannel.broadcast_to(url.user, url.serializer.to_h)
+    end
+
     redirect_to url.url
   end
 

@@ -4,7 +4,9 @@ development:
 test:
   adapter: test
 
+# temporary solution - 'async' only works when app runs in a single process
 production:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: url_shortener_production
+  adapter: async
+  # adapter: redis
+  # url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  # channel_prefix: url_shortener_production

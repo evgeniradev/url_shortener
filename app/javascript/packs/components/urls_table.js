@@ -1,5 +1,12 @@
+import { createConsumer } from '@rails/actioncable'
+
 $(document).on('turbolinks:load', () => {
   const urlsTableEl = $('#urls-datatable');
+
+  if (urlsTableEl.length === 0)
+    return
+
+  // initializes the table
   const urlsTableDt =
     $('#urls-datatable').DataTable({
       autoWidth: false,
@@ -7,7 +14,9 @@ $(document).on('turbolinks:load', () => {
       responsive: true,
       serverSide: false,
       lengthChange: false,
-      pageLength: 5,
+      paging: false,
+      bInfo: false,
+      rowId: (data) => `urls-row-${data.id}`,
       ajax: {
         'url': $('#urls-datatable').data('source')
       },
@@ -32,6 +41,7 @@ $(document).on('turbolinks:load', () => {
       order: [[0, 'desc']]
     });
 
+  // adds row to table if Url record created successfully
   $('.shortener_form').on('ajax:success', (event) => {
     const [data, _status, _xhr] = event.detail;
 
@@ -43,9 +53,21 @@ $(document).on('turbolinks:load', () => {
     alert('Success!');
   });
 
+  // displays error if Url record creation failed
   $('.shortener_form').on('ajax:error', (event) => {
     const [data, _status, _xhr] = event.detail;
 
     alert(`Error! ${data}`);
   })
+
+  // updates visits count for individul records in real-time using ActionCable
+  createConsumer().subscriptions.create('UrlChannel', { received: (data) => {
+    const rowId = `#urls-row-${data.id}`
+    const visitsTd = $(`${rowId} td:nth-child(3)`)
+
+    const rowDt = urlsTableDt.row(`#urls-row-${data.id}`)
+    rowDt.data(data).draw();
+
+    visitsTd.effect('highlight', {}, 5000);
+  }})
 });
