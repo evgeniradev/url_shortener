@@ -18,3 +18,9 @@ Metrics/BlockLength:
 
 RSpec/ExampleLength:
   Max: 10
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false

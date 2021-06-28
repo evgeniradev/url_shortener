@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# this forces the test sqlite db to use the same transaction for all threads
+# this forces the test sqlite db to use the same connection for all threads
+# this is needed otherwise sqlite deadlocks
 
 # rubocop:disable Style/ClassVars
 module ActiveRecord

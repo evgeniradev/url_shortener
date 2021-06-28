@@ -2,6 +2,7 @@ import { createConsumer } from '@rails/actioncable'
 
 $(document).on('turbolinks:load', () => {
   const urlsTableEl = $('#urls-datatable');
+  const animationDuration = 5000;
 
   if (urlsTableEl.length === 0)
     return
@@ -16,6 +17,10 @@ $(document).on('turbolinks:load', () => {
       lengthChange: false,
       paging: false,
       bInfo: false,
+      language: {
+        emptyTable: 'You have not generated any short urls.',
+        zeroRecords: 'No matching urls found.'
+      },
       rowId: (data) => `urls-row-${data.id}`,
       ajax: {
         'url': $('#urls-datatable').data('source')
@@ -48,7 +53,9 @@ $(document).on('turbolinks:load', () => {
     urlsTableDt.row.add(data).draw();
     urlsTableDt.order([[0, 'desc']]).draw();
 
-    urlsTableEl.find('tbody tr:first-child').effect('highlight', {}, 5000);
+    urlsTableEl
+      .find('tbody tr:first-child')
+      .effect('highlight', {}, animationDuration);
 
     alert('Success!');
   });
@@ -68,6 +75,6 @@ $(document).on('turbolinks:load', () => {
     const rowDt = urlsTableDt.row(`#urls-row-${data.id}`)
     rowDt.data(data).draw();
 
-    visitsTd.effect('highlight', {}, 5000);
+    visitsTd.effect('highlight', {}, animationDuration);
   }})
 });

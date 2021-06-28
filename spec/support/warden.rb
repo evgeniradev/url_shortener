@@ -2,7 +2,8 @@
 
 RSpec.configure do |config|
   config.include Warden::Test::Helpers, type: :feature
-  config.after do
+  config.after type: :feature do
+    Capybara.reset_sessions!
     Warden.test_reset!
   end
 end

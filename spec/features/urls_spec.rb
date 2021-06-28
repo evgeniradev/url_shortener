@@ -3,9 +3,11 @@
 require 'rails_helper'
 
 describe 'Urls', type: :feature do
-  let(:user) { create(:user) }
-  let(:url) { create(:url, url: new_user_registration_url, user: user) }
+  let(:url) do
+    create(:url, url: new_user_registration_url(host: SEVER_HOST), user: user)
+  end
   let(:another_url) { create(:url) }
+  let(:user) { create(:user) }
 
   it 'user can generate a short url' do
     given_that_slug_generator_is_mocked
