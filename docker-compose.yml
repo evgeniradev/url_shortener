@@ -1,14 +1,16 @@
+# This configuration is only for app demo purposes.
+# Using it for development purposes will need further work as currently any
+# app code changes made after the container is built will not be present in it.
+
 version: '3.9'
 services:
   url_shortener_app:
     build: .
     container_name: url_shortener_app
-    environment:
-      - RAILS_ENV=production
     ports:
       - '3000:3000'
     stdin_open: true
     tty: true
-    # fixes and issue with Chrome running out of memory
     volumes:
+      # fixes and issue with Chrome running out of memory
       - /dev/shm:/dev/shm

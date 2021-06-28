@@ -15,7 +15,7 @@ A Rails-based URL shortener application.
 
 ## Manual Installation
 
-Install bundler:
+Install the bundler gem:
 ```
 $ gem install bundler
 ```
@@ -30,20 +30,15 @@ Install the Node.js dependencies:
 $ yarn install
 ```
 
-Build the frontend assets:
-```
-$ RAILS_ENV=production bundle exec rails webpacker:compile
-```
-
 Setup the databases:
 ```
-$ RAILS_ENV=production bundle exec rails db:setup
-$ RAILS_ENV=test bundle exec rails db:test:prepare
+$ bundle exec rails db:setup
+$ bundle exec rails db:test:prepare
 ```
 
-Start the application in production mode:
+Start the application in development mode:
 ```
-$ RAILS_ENV=production bundle exec rails s
+$ bundle exec rails s
 ```
 
 Finally, load [http://localhost:3000](http://localhost:3000) in your browser.
@@ -62,7 +57,7 @@ Build the container:
 $ docker-compose build
 ```
 
-Start the container:
+Start the application in development mode:
 ```
 $ docker-compose up
 ```

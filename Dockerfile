@@ -15,13 +15,12 @@ COPY Gemfile.lock /url_shortener_app/Gemfile.lock
 RUN bundle install
 COPY . /url_shortener_app
 
-# Build assets
-RUN RAILS_ENV=production bundle exec rails assets:clobber
-RUN RAILS_ENV=production bundle exec rails webpacker:compile
+# Install Node.js dependencies
+RUN yarn install
 
 # Setup databases
-RUN RAILS_ENV=production bundle exec rails db:drop
-RUN RAILS_ENV=production bundle exec rails db:setup
-RUN RAILS_ENV=test bundle exec rails db:test:prepare
+RUN bundle exec rails db:drop
+RUN bundle exec rails db:setup
+RUN bundle exec rails db:test:prepare
 
 CMD rm -f ./tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0

@@ -2,10 +2,11 @@ import { createConsumer } from '@rails/actioncable'
 
 $(document).on('turbolinks:load', () => {
   const urlsTableEl = $('#urls-datatable');
-  const animationDuration = 5000;
 
   if (urlsTableEl.length === 0)
     return
+
+  const animationDuration = 5000;
 
   // initializes the table
   const urlsTableDt =
