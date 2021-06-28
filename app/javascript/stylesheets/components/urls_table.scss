@@ -5,4 +5,12 @@
    text-overflow: ellipsis;
    white-space: nowrap;
   }
+
+  // without this when ActionCable sends a visits count update message
+  // the table responsiveness breaks as the count appears in two places
+  @media (max-width: 359px) {
+    td:nth-child(3) {
+      display: none !important;
+    }
+  }
 }
