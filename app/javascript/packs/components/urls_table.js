@@ -1,10 +1,10 @@
-import { createConsumer } from '@rails/actioncable'
+import { createConsumer } from '@rails/actioncable';
 
 $(document).on('turbolinks:load', () => {
   const urlsTableEl = $('#urls-datatable');
 
   if (urlsTableEl.length === 0)
-    return
+    return;
 
   const animationDuration = 5000;
 
@@ -70,10 +70,10 @@ $(document).on('turbolinks:load', () => {
 
   // updates visits count for individul records in real-time using ActionCable
   createConsumer().subscriptions.create('UrlChannel', { received: (data) => {
-    const rowId = `#urls-row-${data.id}`
-    const visitsTd = $(`${rowId} td:nth-child(3)`)
+    const rowId = `#urls-row-${data.id}`;
+    const visitsTd = $(`${rowId} td:nth-child(3)`);
 
-    const rowDt = urlsTableDt.row(`#urls-row-${data.id}`)
+    const rowDt = urlsTableDt.row(`#urls-row-${data.id}`);
     rowDt.data(data).draw();
 
     visitsTd.effect('highlight', {}, animationDuration);
